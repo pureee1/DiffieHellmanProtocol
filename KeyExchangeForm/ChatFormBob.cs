@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace KeyExchangeForm
 {
@@ -23,10 +18,101 @@ namespace KeyExchangeForm
         public int OpenA { get; set; }
 
         public int OpenB { get; set; }
+        private int secretKey;
+        private string keyHash;
+
+        private readonly BridgeForm Bridge;
 
         public ChatFormBob(BridgeForm bf)
         {
             InitializeComponent();
+            Bridge = bf;
+            ActionTimer.Start();
+            DecryptBtn.Enabled = false;
+            EncryptBtn.Enabled = false;
+        }
+
+        private void ActionTime_Tick(object sender, EventArgs e)
+        {
+            if (CheckForUpdates())
+            {
+                OpenA = Bridge.OpenA;
+                P = Bridge.P;
+                G = Bridge.G;
+                Bridge.UpdatesForBob = false;
+                PLbl.Text += P;
+                GLbl.Text += G;
+                OpenALbl.Text += OpenA;
+
+
+                FirstStageBob();
+                secretKey = (int)BigInteger.ModPow(OpenA, b, P);
+                KeyLbl.Text += secretKey;
+                GetKeyHash();
+                HashLbl.Text += keyHash;
+
+                Bridge.OpenB = OpenB;
+                Bridge.LogLbl.Text += "Bob sent openB component and key hash to Alice\r\n";
+                Bridge.LogLbl.Text += $"B={OpenB}\r\n";
+                Bridge.LogLbl.Text += $"HASH={keyHash}\r\n";
+                Bridge.LogLbl.Text += $"{new string('-', 50)}\r\n";
+                Bridge.BobsHash = keyHash;
+                Bridge.UpdatesForAlice = true;
+                ActionTimer.Stop();
+                DecryptBtn.Enabled = true;
+                EncryptBtn.Enabled = true;
+            }
+
+
+        }
+
+        private void FirstStageBob()//rename
+        {
+            b = randomizer.Next(25, 300);
+            OpenB = (int)BigInteger.ModPow(G, b, P);
+            BLbl.Text += b;
+            OpenBLbl.Text += OpenB;
+        }
+
+        private bool CheckForUpdates()
+        {
+            return Bridge.UpdatesForBob;
+        }
+
+        private void GetKeyHash()
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                keyHash = MD5Helpers.GetMd5Hash(md5Hash, secretKey.ToString());
+            }
+        }
+
+        private void DecryptBtn_Click(object sender, EventArgs e)
+        {
+            if (InputTxtBox.Text.Length >= 1)
+            {
+                OutputLbl.Text = string.Empty;
+                foreach (var item in InputTxtBox.Text.Split(' '))
+                {
+                    OutputLbl.Text += $"{(char)(Convert.ToInt32(item) ^ secretKey)}";
+                }
+            }
+        }
+
+        private void EncryptBtn_Click(object sender, EventArgs e)
+        {
+            if (InputTxtBox.Text.Length >= 1)
+            {
+                OutputLbl.Text = string.Empty;
+                Bridge.LogLbl.Text += "-----BEGIN ENCRYPTED MESSAGE-----\r\n";
+                foreach (var item in InputTxtBox.Text)
+                {
+                    Bridge.LogLbl.Text += $"{item ^ secretKey} ";
+                    OutputLbl.Text += $"{ item ^ secretKey} ";
+                }
+                Bridge.LogLbl.Text += "\r\n";
+                Bridge.LogLbl.Text += "-----END ENCRYPTED MESSAGE-----\r\n";
+            }
         }
     }
 }

@@ -68,8 +68,10 @@
     <Compile Include="ChatFormBob.Designer.cs">
       <DependentUpon>ChatFormBob.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cryptography\MD5Helpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AlicesStages.cs" />
     <EmbeddedResource Include="BridgeForm.resx">
       <DependentUpon>BridgeForm.cs</DependentUpon>
     </EmbeddedResource>

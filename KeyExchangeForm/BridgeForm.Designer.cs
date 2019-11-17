@@ -39,9 +39,9 @@
             this.LogPnl.Controls.Add(this.LogLbl);
             this.LogPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LogPnl.Location = new System.Drawing.Point(0, 0);
-            this.LogPnl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogPnl.Margin = new System.Windows.Forms.Padding(4);
             this.LogPnl.Name = "LogPnl";
-            this.LogPnl.Size = new System.Drawing.Size(1200, 658);
+            this.LogPnl.Size = new System.Drawing.Size(934, 346);
             this.LogPnl.TabIndex = 0;
             // 
             // LogLbl
@@ -57,11 +57,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 658);
+            this.ClientSize = new System.Drawing.Size(934, 346);
             this.Controls.Add(this.LogPnl);
             this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BridgeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BridgeForm";
             this.LogPnl.ResumeLayout(false);
             this.LogPnl.PerformLayout();
