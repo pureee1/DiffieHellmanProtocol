@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.PLbl = new System.Windows.Forms.Label();
             this.GLbl = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.OpenBLbl = new System.Windows.Forms.Label();
             this.KeyLbl = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ActionTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -108,6 +110,10 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 7;
             // 
+            // ActionTimer
+            // 
+            this.ActionTimer.Tick += new System.EventHandler(this.ActionTimer_Tick);
+            // 
             // ChatFormAlice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,7 +129,6 @@
             this.Controls.Add(this.button1);
             this.Name = "ChatFormAlice";
             this.Text = "Form1";
-            this.DoubleClick += new System.EventHandler(this.ChatFormAlice_DoubleClick);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,6 +144,7 @@
         private System.Windows.Forms.Label OpenBLbl;
         private System.Windows.Forms.Label KeyLbl;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Timer ActionTimer;
     }
 }
 

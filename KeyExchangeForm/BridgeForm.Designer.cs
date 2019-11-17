@@ -29,25 +29,42 @@
         private void InitializeComponent()
         {
             this.LogPnl = new System.Windows.Forms.Panel();
+            this.LogLbl = new System.Windows.Forms.Label();
+            this.LogPnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogPnl
             // 
             this.LogPnl.AutoScroll = true;
+            this.LogPnl.Controls.Add(this.LogLbl);
             this.LogPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LogPnl.Location = new System.Drawing.Point(0, 0);
+            this.LogPnl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogPnl.Name = "LogPnl";
-            this.LogPnl.Size = new System.Drawing.Size(800, 450);
+            this.LogPnl.Size = new System.Drawing.Size(1200, 658);
             this.LogPnl.TabIndex = 0;
+            // 
+            // LogLbl
+            // 
+            this.LogLbl.AutoSize = true;
+            this.LogLbl.Location = new System.Drawing.Point(8, 7);
+            this.LogLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LogLbl.Name = "LogLbl";
+            this.LogLbl.Size = new System.Drawing.Size(0, 19);
+            this.LogLbl.TabIndex = 0;
             // 
             // BridgeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 658);
             this.Controls.Add(this.LogPnl);
+            this.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "BridgeForm";
             this.Text = "BridgeForm";
+            this.LogPnl.ResumeLayout(false);
+            this.LogPnl.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -55,5 +72,6 @@
         #endregion
 
         private System.Windows.Forms.Panel LogPnl;
+        public System.Windows.Forms.Label LogLbl;
     }
 }

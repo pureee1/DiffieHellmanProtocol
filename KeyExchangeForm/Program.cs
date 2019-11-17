@@ -16,7 +16,7 @@ namespace KeyExchangeForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChatFormAlice());
+            Application.Run(new BridgeForm());
         }
     }
 }

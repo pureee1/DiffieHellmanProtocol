@@ -32,8 +32,6 @@
             this.OpenBLbl = new System.Windows.Forms.Label();
             this.OpenALbl = new System.Windows.Forms.Label();
             this.BLbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.GLbl = new System.Windows.Forms.Label();
             this.PLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -74,22 +72,6 @@
             this.BLbl.TabIndex = 7;
             this.BLbl.Text = "b:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(336, 152);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(360, 199);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // GLbl
             // 
             this.GLbl.AutoSize = true;
@@ -115,8 +97,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.GLbl);
             this.Controls.Add(this.PLbl);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.KeyLbl);
             this.Controls.Add(this.OpenBLbl);
             this.Controls.Add(this.OpenALbl);
@@ -134,8 +114,6 @@
         public System.Windows.Forms.Label OpenBLbl;
         public System.Windows.Forms.Label OpenALbl;
         public System.Windows.Forms.Label BLbl;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.Button button1;
         public System.Windows.Forms.Label GLbl;
         public System.Windows.Forms.Label PLbl;
     }

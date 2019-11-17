@@ -12,7 +12,19 @@ namespace KeyExchangeForm
 {
     public partial class ChatFormBob : Form
     {
-        public ChatFormBob()
+        private readonly Random randomizer = new Random();
+
+        public int P { get; set; }
+
+        public int G { get; set; }
+
+        private int b;
+
+        public int OpenA { get; set; }
+
+        public int OpenB { get; set; }
+
+        public ChatFormBob(BridgeForm bf)
         {
             InitializeComponent();
         }
