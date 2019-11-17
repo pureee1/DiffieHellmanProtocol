@@ -49,7 +49,7 @@ namespace KeyExchangeForm
                     Bridge.LogLbl.Text += $"Alice sent openA and PG_KeyPair to Bob\r\n";
                     Bridge.LogLbl.Text += $"A={OpenA}\r\nP={P}\r\nG={G}\r\n";
                     Bridge.LogLbl.Text += $"{new string('-', 50)}\r\n";
-                    ActionTimer.Stop();
+
                     break;
                 case Stage.Second:
                     break;
@@ -68,6 +68,8 @@ namespace KeyExchangeForm
             OpenA = (int)BigInteger.ModPow(G, a, P);
             PLbl.Text += P.ToString();
             GLbl.Text += G.ToString();
+            ALbl.Text += a;
+            OpenALbl.Text += OpenA;
         }
 
         private void GetG()
