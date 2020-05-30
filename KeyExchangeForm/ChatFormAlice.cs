@@ -59,8 +59,8 @@ namespace KeyExchangeForm
                         Bridge.OpenA = OpenA;
                         Bridge.P = P;
                         Bridge.G = G;
-                        Bridge.LogLbl.Text += $"Alice sent openA and PG_KeyPair to Bob\r\n";
-                        Bridge.LogLbl.Text += $"A={OpenA}\r\nP={P}\r\nG={G}\r\n";
+                        Bridge.LogLbl.Text += $"Пользователь 1 отправляет остаток от деления - 'A' в открытом виде,\r\n а также пару чисел 'p' и 'g' Пользователю 2\r\n";
+                        Bridge.LogLbl.Text += $"A={OpenA}\r\np={P}\r\ng={G}\r\n";
                         Bridge.LogLbl.Text += $"{new string('-', 50)}\r\n";
                         Bridge.UpdatesForBob = true;
                         currentStage = AlicesStages.Second;
@@ -70,9 +70,9 @@ namespace KeyExchangeForm
                         KeyLbl.Text += secretKey;
                         Bridge.UpdatesForAlice = false;
                         if (!KeyHash.Equals(Bridge.BobsHash))
-                            Bridge.LogLbl.Text += "Alice sent refuse to Bob's hash\r\n";
+                            Bridge.LogLbl.Text += "Пользователь 1 отклоняет хеш Пользователя 2\r\n";
                         else
-                            Bridge.LogLbl.Text += "Alice sent approve to Bob's hash\r\n";
+                            Bridge.LogLbl.Text += "Пользователь 1 подтверждает хеш Пользователя 2\r\n";
 
                         Bridge.LogLbl.Text += $"{new string('-', 50)}\r\n";
                         ActionTimer.Stop();
@@ -87,12 +87,14 @@ namespace KeyExchangeForm
 
         }
 
-        //Generates {P,G} pair and OpenA component 
+        //Generates {p,g} pair and OpenA component 
         private void FirstStageAlice()
         {
-            P = primeNumbers[randomizer.Next(0, primeNumbers.Count)];
+            P = 2147483629;
+            //P = primeNumbers[randomizer.Next(0, primeNumbers.Count)];
             GetG();
-            a = randomizer.Next(125, 300);
+            a = 2147483647;
+            //a = randomizer.Next(125, 300);
             OpenA = (int)BigInteger.ModPow(G, a, P);
             PLbl.Text += P.ToString();
             GLbl.Text += G.ToString();
@@ -115,7 +117,7 @@ namespace KeyExchangeForm
         private void GetG()
         {
             var GList = new List<int>();
-            for (int g = 2; g < P; g++)
+            for (int g = 2000000000; g < P; g++)
             {
                 if (BigInteger.ModPow(g, P - 1, P) == 1)
                 {
@@ -134,7 +136,7 @@ namespace KeyExchangeForm
         {
             if (InputTxtBox.Text.Length >= 1)
             {
-                Bridge.LogLbl.Text += "-----BEGIN ENCRYPTED MESSAGE-----\r\n";
+                Bridge.LogLbl.Text += "------НАЧАЛО СООБЩЕНИЯ------\r\n";
                 OutputLbl.Text = string.Empty;
                 foreach (var item in InputTxtBox.Text)
                 {
@@ -142,7 +144,7 @@ namespace KeyExchangeForm
                     OutputLbl.Text += $"{ item ^ secretKey} ";
                 }
                 Bridge.LogLbl.Text += "\r\n";
-                Bridge.LogLbl.Text += "-----END ENCRYPTED MESSAGE-----\r\n";
+                Bridge.LogLbl.Text += "------КОНЕЦ СООБЩЕНИЯ------\r\n";
             }
         }
 
@@ -157,5 +159,7 @@ namespace KeyExchangeForm
                 }
             }
         }
+
+
     }
 }

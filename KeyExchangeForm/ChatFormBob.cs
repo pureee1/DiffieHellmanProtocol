@@ -52,9 +52,9 @@ namespace KeyExchangeForm
                 HashLbl.Text += keyHash;
 
                 Bridge.OpenB = OpenB;
-                Bridge.LogLbl.Text += "Bob sent openB component and key hash to Alice\r\n";
+                Bridge.LogLbl.Text += "Пользователь 2 отправляет остаток от деления - 'B' в открытом виде,\r\n а также хеш секрета Пользователю 1\r\n";
                 Bridge.LogLbl.Text += $"B={OpenB}\r\n";
-                Bridge.LogLbl.Text += $"HASH={keyHash}\r\n";
+                Bridge.LogLbl.Text += $"ХЕШ={keyHash}\r\n";
                 Bridge.LogLbl.Text += $"{new string('-', 50)}\r\n";
                 Bridge.BobsHash = keyHash;
                 Bridge.UpdatesForAlice = true;
@@ -68,7 +68,8 @@ namespace KeyExchangeForm
 
         private void FirstStageBob()//rename
         {
-            b = randomizer.Next(25, 300);
+            b = 2147483152;
+            //b = randomizer.Next(25, 300);
             OpenB = (int)BigInteger.ModPow(G, b, P);
             BLbl.Text += b;
             OpenBLbl.Text += OpenB;
@@ -104,14 +105,14 @@ namespace KeyExchangeForm
             if (InputTxtBox.Text.Length >= 1)
             {
                 OutputLbl.Text = string.Empty;
-                Bridge.LogLbl.Text += "-----BEGIN ENCRYPTED MESSAGE-----\r\n";
+                Bridge.LogLbl.Text += "-----НАЧАЛО СООБЩЕНИЯ-----\r\n";
                 foreach (var item in InputTxtBox.Text)
                 {
                     Bridge.LogLbl.Text += $"{item ^ secretKey} ";
                     OutputLbl.Text += $"{ item ^ secretKey} ";
                 }
                 Bridge.LogLbl.Text += "\r\n";
-                Bridge.LogLbl.Text += "-----END ENCRYPTED MESSAGE-----\r\n";
+                Bridge.LogLbl.Text += "-----КОНЕЦ СООБЩЕНИЯ-----\r\n";
             }
         }
     }

@@ -64,7 +64,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BridgeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BridgeForm";
+            this.Text = "Канал связи";
             this.LogPnl.ResumeLayout(false);
             this.LogPnl.PerformLayout();
             this.ResumeLayout(false);
